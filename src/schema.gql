@@ -3,5 +3,10 @@
 # ------------------------------------------------------
 
 type Query {
-  helloWorld: String!
+  """Returns Hello World"""
+  hello: String!
+  randomNumber: Float!
+
+  """random number between 0 and 10"""
+  randomFromZeroTo(to: Int): Int!
 }
