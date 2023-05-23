@@ -4,6 +4,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { HelloWorldModule } from './hello-world/hello-world.module';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
+import { BooksModule } from './books/books.module';
 
 @Module({
   imports: [
@@ -15,7 +16,8 @@ import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin
         ApolloServerPluginLandingPageLocalDefault({footer: false})
       ]
     }),
-    HelloWorldModule
+    HelloWorldModule,
+    BooksModule
    ]
 })
 export class AppModule {}
