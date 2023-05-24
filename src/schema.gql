@@ -2,11 +2,22 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type Query {
-  """Returns Hello World"""
-  hello: String!
-  randomNumber: Float!
+type Book {
+  id: String!
+  title: String!
+  genere: String!
+}
 
-  """random number between 0 and 10"""
-  randomFromZeroTo(to: Int): Int!
+type Query {
+  book(id: String!): Book!
+  books: [Book!]!
+}
+
+type Mutation {
+  createBook(bookData: NewBookData!): Book!
+}
+
+input NewBookData {
+  title: String!
+  genere: String!
 }
