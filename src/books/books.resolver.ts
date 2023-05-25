@@ -8,14 +8,14 @@ import { NewBookData } from './dto/new-book.input';
 export class BooksResolver {
     constructor(private booksService: BooksService) {}
 
-    // @Query(returns => Book)
-    // async book(@Args('title') title: string): Promise<Book> {
-    //     const book = await this.booksService.findOne(title)
-    //     if(!book) {
-    //         throw new NotFoundException(title)
-    //     }
-    //     return book
-    // }
+    @Query(() => Book)
+    async book(@Args('id') id: number): Promise<Book> {
+        const book = await this.booksService.findOne('id')
+        if(!book) {
+            throw new NotFoundException('id')
+        }
+        return book
+    }
 
     @Query(() => [Book], {name: 'books', description: 'Returns all books'})
     async findAll() {

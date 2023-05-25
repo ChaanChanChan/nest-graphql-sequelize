@@ -9,6 +9,8 @@ type Book {
 }
 
 type Query {
+  book(id: Float!): Book!
+
   """Returns all books"""
   books: [Book!]!
 }
