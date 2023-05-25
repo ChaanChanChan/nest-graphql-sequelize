@@ -1,10 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { Book } from './book.model';
+import { Book } from './book.entity';
 import { InjectModel } from '@nestjs/sequelize';
 import { NewBookData } from './dto/new-book.input';
-import * as dotenv from 'dotenv';
 
-dotenv.config();
 @Injectable()
 export class BooksService {
     constructor(
@@ -13,13 +11,13 @@ export class BooksService {
     ) {}
     
     async findAll(): Promise<Book[]> {
-        return this.bookModel.findAll()
+        return await this.bookModel.findAll()
     }
 
-    async findOne(id: string): Promise<Book> {
+    async findOne(title: string): Promise<Book> {
         return this.bookModel.findOne({
             where: {
-                id,
+                title,
             }
         })
     }

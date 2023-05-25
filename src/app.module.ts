@@ -5,7 +5,7 @@ import { SequelizeModule } from '@nestjs/sequelize';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { BooksModule } from './books/books.module';
-import { Book } from './books/book.model';
+import { Book } from './books/book.entity';
 import * as dotenv from 'dotenv';
 
 dotenv.config();
@@ -17,7 +17,8 @@ dotenv.config();
       playground: false,
       plugins: [
         ApolloServerPluginLandingPageLocalDefault({footer: false})
-      ]
+      ],
+      include: [BooksModule]
     }),
     SequelizeModule.forRoot({
       dialect: 'postgres',
@@ -25,11 +26,10 @@ dotenv.config();
       port: 5432,
       username: 'postgres',
       password: 'dotenv',
-      database: 'bookdb',
+      database: 'booksdb',
       models: [Book],
-      synchronize: 'true',
+      synchronize: true,
     }),
-    // HelloWorldModule,
     BooksModule,
    ]
 })

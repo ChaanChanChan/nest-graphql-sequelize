@@ -3,6 +3,9 @@
 /node_modules
 .env
 
+# example graphql folder
+/hello-world
+
 # Logs
 logs
 *.log

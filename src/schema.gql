@@ -3,21 +3,11 @@
 # ------------------------------------------------------
 
 type Book {
-  id: String!
+  id: Int!
   title: String!
-  genere: String!
+  genere: String
 }
 
 type Query {
-  book(id: String!): Book!
   books: [Book!]!
-}
-
-type Mutation {
-  createBook(bookData: NewBookData!): Book!
-}
-
-input NewBookData {
-  title: String!
-  genere: String!
 }
