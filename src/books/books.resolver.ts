@@ -17,16 +17,15 @@ export class BooksResolver {
     //     return book
     // }
 
-    @Query(() => [Book], {name: 'books'})
-    async finAll() {
-        return 
+    @Query(() => [Book], {name: 'books', description: 'Returns all books'})
+    async findAll() {
+        return this.booksService.findAll()
     }
     
-
-    // @Mutation(returns => Book)
-    // async createBook(
-    //     @Args('bookData') bookData: NewBookData
-    // ): Promise<Book> {
-    //     return this.booksService.create(bookData)
-    // }
+    @Mutation(() => Book)
+    async createBook(
+        @Args('bookData') bookData: NewBookData
+    ): Promise<Book> {
+        return this.booksService.create(bookData)
+    }
 }

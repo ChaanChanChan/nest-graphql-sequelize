@@ -1,13 +1,13 @@
-import { Field, InputType } from "@nestjs/graphql";
+import { Field, InputType, Int } from "@nestjs/graphql";
 
 @InputType()
-export class NewBookData {
-    @Field()
+export class NewBookData {    
+    @Field(type => Int)
     id: number;
-    
-    @Field()
+
+    @Field(type => String)
     title: string;
 
-    @Field()
+    @Field(type => String, {nullable: true})
     genere?: string;
 }

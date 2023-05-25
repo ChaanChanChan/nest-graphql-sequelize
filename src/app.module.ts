@@ -1,14 +1,11 @@
 import { join } from 'path';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { SequelizeModule } from '@nestjs/sequelize';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { BooksModule } from './books/books.module';
-import { Book } from './books/book.entity';
-import * as dotenv from 'dotenv';
+import { DatabaseModule } from './core/database/database.module';
 
-dotenv.config();
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
@@ -20,17 +17,8 @@ dotenv.config();
       ],
       include: [BooksModule]
     }),
-    SequelizeModule.forRoot({
-      dialect: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'dotenv',
-      database: 'booksdb',
-      models: [Book],
-      synchronize: true,
-    }),
+    DatabaseModule,
     BooksModule,
-   ]
+  ],
 })
 export class AppModule {}

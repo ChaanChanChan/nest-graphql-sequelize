@@ -1,21 +1,22 @@
-import { Injectable } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 import { Book } from './book.entity';
-import { InjectModel } from '@nestjs/sequelize';
 import { NewBookData } from './dto/new-book.input';
+import { BOOKS_REPOSITORY } from 'src/core/constants/constants';
 
 @Injectable()
 export class BooksService {
     constructor(
-        @InjectModel(Book)
-        private bookModel: typeof Book,
+        @Inject(BOOKS_REPOSITORY)
+        private booksRepository: typeof Book,
     ) {}
     
     async findAll(): Promise<Book[]> {
-        return await this.bookModel.findAll()
+        console.log(await this.booksRepository.findAll<Book>())
+        return await this.booksRepository.findAll<Book>()
     }
 
     async findOne(title: string): Promise<Book> {
-        return this.bookModel.findOne({
+        return this.booksRepository.findOne({
             where: {
                 title,
             }
@@ -24,7 +25,7 @@ export class BooksService {
 
     async create(bookData: NewBookData): Promise<Book> {
         console.log(bookData)
-        return this.bookModel.create(bookData)
+        return await this.booksRepository.create(bookData)
     }
 }
  
