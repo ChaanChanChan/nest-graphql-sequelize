@@ -11,7 +11,6 @@ export class BooksService {
     ) {}
     
     async findAll(): Promise<Book[]> {
-        console.log(await this.booksRepository.findAll<Book>())
         return await this.booksRepository.findAll<Book>()
     }
 
