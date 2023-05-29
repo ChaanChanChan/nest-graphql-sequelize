@@ -5,6 +5,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { BooksModule } from './books/books.module';
 import { DatabaseModule } from './core/database/database.module';
+import { AuthorsModule } from './authors/authors.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import { DatabaseModule } from './core/database/database.module';
     }),
     DatabaseModule,
     BooksModule,
+    AuthorsModule,
   ],
 })
 export class AppModule {}
